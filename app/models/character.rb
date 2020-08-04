@@ -1,13 +1,8 @@
-class Actor < ActiveRecord::Base
-  has_many :characters
-  has_many :shows, through: :characters
+class Character < ActiveRecord::Base
+  belongs_to :actor
+  belongs_to :show
 
-  def full_name
-    "#{self.first_name} #{self.last_name}"
-  end
-
-  def list_roles
-    self.characters.map{|a| "#{a.name} - #{a.show.name}"}
-
+  def say_that_thing_you_say
+    "#{self.name} always says: #{self.catchphrase}"
   end
 end
